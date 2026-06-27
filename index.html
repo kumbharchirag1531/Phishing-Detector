@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URLSCAN // Phishing Detector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<div class="scanlines"></div>
+
+<main class="wrap">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">◎</span>
+      <span class="brand-text">URLSCAN<span class="brand-dim">/detector</span></span>
+    </div>
+    <div class="status" id="systemStatus">
+      <span class="dot dot-idle" id="statusDot"></span>
+      <span id="statusText">SYSTEM IDLE</span>
+    </div>
+  </header>
+
+  <section class="scan-panel">
+    <p class="eyebrow">01 — SUBMIT TARGET</p>
+    <h1>Is this link safe to open?</h1>
+
+    <form id="scanForm" autocomplete="off">
+      <div class="input-row">
+        <span class="input-prefix">$ inspect</span>
+        <input
+          type="text"
+          id="url"
+          name="url"
+          placeholder="https://example.com/login"
+          spellcheck="false">
+        <button type="submit" id="scanBtn">
+          <span class="btn-label">Analyze</span>
+          <span class="btn-spinner" id="btnSpinner"></span>
+        </button>
+      </div>
+    </form>
+    <p class="hint" id="errorHint"></p>
+  </section>
+
+  <section class="result-grid" id="resultGrid">
+
+    <div class="card gauge-card">
+      <p class="eyebrow">02 — RISK SCORE</p>
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 200 200" class="gauge-svg">
+          <circle cx="100" cy="100" r="84" class="gauge-track"></circle>
+          <circle cx="100" cy="100" r="84" class="gauge-fill" id="gaugeFill"
+                  stroke-dasharray="528" stroke-dashoffset="528"></circle>
+        </svg>
+        <div class="gauge-center">
+          <span class="gauge-num" id="riskText">--</span>
+          <span class="gauge-max">/ 100</span>
+        </div>
+      </div>
+      <p class="gauge-label" id="gaugeLabel">awaiting input</p>
+    </div>
+
+    <div class="card verdict-card">
+      <p class="eyebrow">03 — VERDICT</p>
+      <div class="verdict-body" id="verdictBody">
+        <p class="verdict-placeholder">Run a scan to see the analysis here.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="card log-card">
+    <p class="eyebrow">04 — SCAN LOG</p>
+    <div class="log-empty" id="logEmpty">No scans yet this session.</div>
+    <ul id="history"></ul>
+  </section>
+
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
